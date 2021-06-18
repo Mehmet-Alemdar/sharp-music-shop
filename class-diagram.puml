@@ -1,0 +1,36 @@
+@startuml
+
+class Customer {
+    + name : String
+    + address : String
+    - orderHistroy : Order[]
+    + order(instrument)
+}
+
+
+class Seller {
+    + name : String
+    + instruments : Instrument[]
+    - salesMade : Order[]
+    + addInstrument(type, kind, model, price)
+    + addSalesMade(Order)
+}
+
+class Instrument {
+    + type : String
+    + kind : String
+    + model : String
+    + price : String
+    + seller : Seller
+}
+
+class Order {
+    + customer : Customer
+    + destination : Customer.location
+    + instrument : Instrument
+}
+
+Customer *-- Order
+Seller *-- Instrument
+
+@enduml
