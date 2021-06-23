@@ -11,7 +11,7 @@ class Customer {
 class Seller {
     + name : String
     + instruments : Instrument[]
-    - salesMade : Order[]
+    - orderHistory: Order[]
     + addInstrument(type, kind, model, price)
     + addSalesMade(Order)
 }
