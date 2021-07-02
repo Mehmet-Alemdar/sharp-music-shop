@@ -2,30 +2,19 @@ const BaseDatabase = require('./base-database')
 const Instrument = require('../models/instrument')
 
 class InstrumentDatabase extends BaseDatabase {
-  findInstrument() {
-    return this.load()
+  async findInstrument() {
+    return await this.load()
   }
 
-  findInstrumentByType(type) {
-    const objects = this.load()
-    let typeList = []
-    objects.forEach((elements) => {
-      if (elements.type == type) {
-        typeList.push(elements)
-      }
-    })
-    return typeList
+  async findInstrumentByType(type) {
+    const objects = await this.load()
+
+    return objects.filter((o) => o.type == type)
   }
 
-  findInstrumentByModel(model) {
-    const objects = this.load()
-    let modelList = []
-    objects.forEach((elements) => {
-      if (elements.model == model) {
-        modelList.push(elements)
-      }
-    })
-    return modelList
+  async findInstrumentByModel(model) {
+    const objects = await this.load()
+    return objects.filter((o) => o.model == model)
   }
 }
 
