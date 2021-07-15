@@ -1,16 +1,17 @@
-const Seller = require('./models/seller')
+const Shop = require('./models/shop')
 const Customer = require('./models/customer')
 const Instrument = require('./models/instrument')
 const printOrderHistory = require('./lib/print-order')
 
 const {
   customerDatabase,
-  sellerDatabase,
+  shopDatabase,
   instrumentDatabase,
 } = require('./database')
 
 // vendor and customer creation process
-const seller = Seller.create({ name: 'Panda Müzik' })
+const shop = Shop.create({ name: 'Panda Music' })
+const shop2 = Shop.create({ name: 'Lion Music' })
 const mehmet = Customer.create({
   name: 'Mehmet',
   address: 'izmir/karşıyaka...',
@@ -18,43 +19,84 @@ const mehmet = Customer.create({
 
 // instrument creation process
 const instrument = Instrument.create({
-  type: 'guitar',
-  kind: 'electro',
-  model: 'fender',
+  type: 'stringed',
+  category: 'guitar',
+  kind: 'electronic',
+  brand: 'fender',
+  model: 'stratocaster',
   price: '1000$',
-  seller,
+  shop,
 })
 
 const instrument2 = Instrument.create({
-  type: 'piano',
-  kind: 'classic',
-  model: 'yamaha',
-  price: '5000$',
-  seller,
+  type: 'Keyboard',
+  category: 'Stage Keyboards',
+  kind: 'electronic',
+  brand: 'yamaha',
+  model: 'YC Series',
+  price: '7899$',
+  shop,
 })
 
-// the process of adding the instrument to the instrument list of the vendor to which it belongs
-seller.addInstrument(instrument)
-seller.addInstrument(instrument2)
+const instrument3 = Instrument.create({
+  type: 'Wind',
+  category: 'saxophones',
+  kind: 'tenor saxophones',
+  brand: 'thomann',
+  model: 'Special series',
+  price: '598$',
+  shop,
+})
+const instrument4 = Instrument.create({
+  type: 'Percussion',
+  category: 'Drum',
+  kind: 'Bass Drum',
+  brand: 'trick',
+  model: 'Trick AL13 Bass Drum 24 x 18 in. Black Cast',
+  price: '1467,65$',
+  shop: shop2,
+})
+const instrument5 = Instrument.create({
+  type: 'stringed',
+  category: 'guitar',
+  kind: 'classical',
+  brand: 'yamaha',
+  model: 'NX Series',
+  price: '4467$',
+  shop: shop2,
+})
 
-// order creation process
+//the process of adding the instrument to the instrument list of the vendor to which it belongs
+shop.addInstrument(instrument)
+shop.addInstrument(instrument2)
+shop.addInstrument(instrument3)
+shop2.addInstrument(instrument4)
+shop2.addInstrument(instrument5)
+
+//order creation process
 const order = mehmet.order(instrument2)
 const order2 = mehmet.order(instrument)
 
-// the process of adding to the seller's sales history
-seller.addSalesMade(order)
-seller.addSalesMade(order2)
+// the process of adding to the shop's sales history
+shop.addSalesMade(order)
+shop.addSalesMade(order2)
 
 async function main() {
   try {
     // customer registration
     await customerDatabase.save([mehmet])
 
-    // seller registration
-    await sellerDatabase.save([seller])
+    // shop registration
+    await shopDatabase.save([shop, shop2])
 
     // instrument recording
-    await instrumentDatabase.save([instrument, instrument2])
+    await instrumentDatabase.save([
+      instrument,
+      instrument2,
+      instrument3,
+      instrument4,
+      instrument5,
+    ])
 
     const customers = await customerDatabase.load()
 

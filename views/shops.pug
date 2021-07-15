@@ -1,0 +1,9 @@
+extends layout 
+block content 
+    h2 Shops 
+    ol 
+        each shop in shops
+            li 
+                a(href=`/shops/${shop.name}`) #{shop.name}
+
+            

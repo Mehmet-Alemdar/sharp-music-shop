@@ -12,9 +12,37 @@ class InstrumentDatabase extends BaseDatabase {
     return objects.filter((o) => o.type == type)
   }
 
-  async findInstrumentByModel(model) {
+  async findInstrumentByCategory(category) {
     const objects = await this.load()
-    return objects.filter((o) => o.model == model)
+
+    return objects.filter((o) => o.category == category)
+  }
+
+  async findInstrumentByKind(kind) {
+    const objects = await this.load()
+
+    return objects.filter((o) => o.kind == kind)
+  }
+
+  async findInstrumentByBrand(brand) {
+    const objects = await this.load()
+
+    return objects.filter((o) => o.brand == brand)
+  }
+
+  //It is used when creating the order.
+  async getFilterInstrument({ type, category, kind, brand, model, shop }) {
+    const objects = await this.load()
+
+    return objects.find(
+      (o) =>
+        o.type == type &&
+        o.category == category &&
+        o.kind == kind &&
+        o.brand == brand &&
+        o.model == model &&
+        o.shop.name == shop
+    )
   }
 }
 

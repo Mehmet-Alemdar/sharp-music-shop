@@ -1,5 +1,5 @@
 const customerDatabase = require('./customer-database')
-const sellerDatabase = require('./seller-database')
+const shopDatabase = require('./shop-database')
 const instrumentDatabase = require('./instrument-database')
 
-module.exports = { customerDatabase, sellerDatabase, instrumentDatabase }
+module.exports = { customerDatabase, shopDatabase, instrumentDatabase }

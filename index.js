@@ -1,28 +1,24 @@
-const {
-  customerDatabase,
-  sellerDatabase,
-  instrumentDatabase,
-} = require('./database')
+const express = require('express')
+const instrumentsRouter = require('./routes/instruments')
+const shopsRouter = require('./routes/shops')
+const brandsRouter = require('./routes/brands')
+const { instrumentDatabase } = require('./database')
+const bodyParser = require('body-parser')
 
-async function getInfo() {
-  try {
-    // customer in database
-    const customers = await customerDatabase.findByName('Mehmet')
+const app = express()
 
-    // seller in database
-    const sellers = await sellerDatabase.findBySellerName('Panda Müzik')
+app.use(bodyParser.json())
 
-    // instruments in database
-    const instruments = await instrumentDatabase.findInstrument()
+app.set('view engine', 'pug')
 
-    // instruments of the specified type in the database
-    const types = await instrumentDatabase.findInstrumentByType('gitar')
+app.use('/instruments-types', instrumentsRouter)
+app.use('/shops', shopsRouter)
+app.use('/brands', brandsRouter)
+app.get('/', async (req, res) => {
+  const instruments = await instrumentDatabase.findInstrument()
+  res.render('index', { instruments })
+})
 
-    // instruments of the specified model in the database
-    const models = await instrumentDatabase.findInstrumentByModel('yamaha')
-  } catch (e) {
-    console.log(e)
-  }
-}
-
-getInfo()
+app.listen(3000, () => {
+  console.log('started listening on 3000')
+})

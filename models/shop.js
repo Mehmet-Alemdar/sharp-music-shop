@@ -1,6 +1,6 @@
-const Instrument = require('./instrument')
 const uuid = require('uuid')
-class Seller {
+
+class Shop {
   constructor(id = uuid.v4(), name, instruments = [], orderHistory = []) {
     this.id = id
     this.name = name
@@ -17,8 +17,8 @@ class Seller {
   }
 
   static create({ id, name, instruments, orderHistory }) {
-    return new Seller(id, name, instruments, orderHistory)
+    return new Shop(id, name, instruments, orderHistory)
   }
 }
 
-module.exports = Seller
+module.exports = Shop

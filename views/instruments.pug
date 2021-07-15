@@ -1,0 +1,11 @@
+extends layout 
+block content 
+    h2 Instruments Types
+    p veritabanında #{instrumentsTypes.length} tip enstrüman var
+
+    ol 
+        each types in instrumentsTypes
+
+            li 
+                a(href=`/instruments-types/${types}`)  #{types}
+                   

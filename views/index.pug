@@ -1,0 +1,17 @@
+extends layout 
+block content 
+    h2 Home
+    
+    h3 All Instruments
+    
+    ol 
+        each instrument in instruments 
+            li 
+                p #[strong type]     #{instrument.type}
+                p #[strong brand]    #{instrument.brand}
+                p #[strong category] #{instrument.category}
+                p #[strong model]    #{instrument.model}
+                p #[strong kind]     #{instrument.kind}
+                p #[strong shop]    #[a(href=`/shops/${instrument.shop.name}`) #{instrument.shop.name}] 
+
+                hr

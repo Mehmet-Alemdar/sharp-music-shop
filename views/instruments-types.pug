@@ -1,0 +1,8 @@
+extends layout 
+block content 
+    h2 #{type} instruments
+
+    ol 
+        each categorys in instrumentsCategorys
+            li
+                a(href=`/instruments-types/category/${categorys}`) #{categorys}

@@ -1,0 +1,13 @@
+extends layout 
+block content 
+    h2 #{shop.name}
+
+    ol 
+        each instrument in shop.instruments
+            li 
+                p #[strong type]     #{instrument.type}
+                p #[strong brand]    #{instrument.brand}
+                p #[strong category] #{instrument.category}
+                p #[strong model]    #{instrument.model}
+                p #[strong kind]     #{instrument.kind}
+                hr

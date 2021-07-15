@@ -34,7 +34,7 @@ class BaseDatabase {
   }
 
   async insert(object) {
-    const objects = await object.load()
+    const objects = await this.load()
 
     await this.save(objects.concat(object))
   }
