@@ -1,11 +1,20 @@
 extends layout 
 block content 
-    h2 Instruments Types
-    p veritabanında #{instrumentsTypes.length} tip enstrüman var
+    h2 Instruments 
+
+    h3 Available instrument types
 
     ol 
         each types in instrumentsTypes
 
             li 
-                a(href=`/instruments-types/${types}`)  #{types}
-                   
+                a(href=`/instruments/type/${types}`)  #{types}
+        hr
+
+
+    h3 Available instrument categories
+    
+    ol 
+        each categories in instrumentsCategories
+            li 
+                a(href=`/instruments/category/${categories}`) #{categories} 

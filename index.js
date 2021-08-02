@@ -11,12 +11,12 @@ app.use(bodyParser.json())
 
 app.set('view engine', 'pug')
 
-app.use('/instruments-types', instrumentsRouter)
+app.use('/instruments', instrumentsRouter)
 app.use('/shops', shopsRouter)
 app.use('/brands', brandsRouter)
+
 app.get('/', async (req, res) => {
-  const instruments = await instrumentDatabase.findInstrument()
-  res.render('index', { instruments })
+  res.render('index')
 })
 
 app.listen(3000, () => {
