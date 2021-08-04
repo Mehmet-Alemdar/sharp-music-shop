@@ -23,9 +23,9 @@ router.get('/type/:type', async (req, res) => {
 
   const instruments = await instrumentDatabase.findInstrumentByType(type)
 
-  const instrumentsCategorys = getInstrumentCategory(instruments)
+  const instrumentsCategories = getInstrumentCategory(instruments)
 
-  res.render('instruments-types', { instrumentsCategorys, type })
+  res.render('instruments-types', { instrumentsCategories, type })
 })
 
 //we pull the instruments of the specified category from the database
