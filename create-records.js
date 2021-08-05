@@ -19,11 +19,11 @@ const mehmet = Customer.create({
 
 // instrument creation process
 const instrument = Instrument.create({
-  type: 'stringed',
-  category: 'guitar',
-  kind: 'electronic',
-  brand: 'fender',
-  model: 'stratocaster',
+  type: 'Stringed',
+  category: 'Guitar',
+  kind: 'Electronic',
+  brand: 'Fender',
+  model: 'Stratocaster',
   price: '1000$',
   shop,
 })
@@ -31,8 +31,8 @@ const instrument = Instrument.create({
 const instrument2 = Instrument.create({
   type: 'Keyboard',
   category: 'Stage Keyboards',
-  kind: 'electronic',
-  brand: 'yamaha',
+  kind: 'Electronic',
+  brand: 'Yamaha',
   model: 'YC Series',
   price: '7899$',
   shop,
@@ -40,9 +40,9 @@ const instrument2 = Instrument.create({
 
 const instrument3 = Instrument.create({
   type: 'Wind',
-  category: 'saxophones',
-  kind: 'tenor saxophones',
-  brand: 'thomann',
+  category: 'Saxophones',
+  kind: 'Tenor saxophones',
+  brand: 'Thomann',
   model: 'Special series',
   price: '598$',
   shop,
@@ -51,16 +51,16 @@ const instrument4 = Instrument.create({
   type: 'Percussion',
   category: 'Drum',
   kind: 'Bass Drum',
-  brand: 'trick',
+  brand: 'Trick',
   model: 'Trick AL13 Bass Drum 24 x 18 in. Black Cast',
   price: '1467,65$',
   shop: shop2,
 })
 const instrument5 = Instrument.create({
-  type: 'stringed',
-  category: 'guitar',
-  kind: 'classical',
-  brand: 'yamaha',
+  type: 'Stringed',
+  category: 'Guitar',
+  kind: 'Classical',
+  brand: 'Yamaha',
   model: 'NX Series',
   price: '4467$',
   shop: shop2,
