@@ -17,7 +17,7 @@ router.get('/:brand', async (req, res) => {
 
   const instruments = await instrumentDatabase.findInstrumentByBrand(brand)
 
-  res.render('filtered', { instruments })
+  res.render('filtered-instruments', { instruments })
 })
 
 module.exports = router
