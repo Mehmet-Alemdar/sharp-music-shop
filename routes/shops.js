@@ -14,8 +14,16 @@ router.get('/', async (req, res) => {
   res.render('shops', { shops })
 })
 
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
 
-  res.render('shop', { shop })
+  const shop = await shopDatabase.find(id)
+
+  if (shop) {
+    res.render('shop', { shop })
+  } else {
+    res.send('This shop is not available')
+  }
 })
 
 module.exports = router

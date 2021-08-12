@@ -12,7 +12,7 @@ block content
                 p #[strong model]    #{instrument.model}
                 p #[strong brand]    #[a(href=`/brands/${instrument.brand}`) #{instrument.brand}]
                 p #[strong kind]     #{instrument.kind}
-                p #[strong shop]     #[a(href=`/shops/${instrument.shop.name}`) #{instrument.shop.name}]
+                p #[strong shop]     #[a(href=`/shops/${instrument.shop.id}`) #{instrument.shop.name}]
 
                 form(action=`/instruments/instrument/${instrument.id}`)
                     input(type="submit" value="Go instrument")
