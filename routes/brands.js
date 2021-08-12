@@ -17,7 +17,11 @@ router.get('/:brand', async (req, res) => {
 
   const instruments = await instrumentDatabase.findInstrumentByBrand(brand)
 
-  res.render('filtered-instruments', { instruments })
+  if (instruments.length <= 0) {
+    res.send('This brand is not available')
+  } else {
+    res.render('brand', { instruments, brand })
+  }
 })
 
 module.exports = router
