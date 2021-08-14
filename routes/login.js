@@ -6,6 +6,7 @@ router.get('/', async (req, res) => {
   res.render('login')
 })
 
+// login customer account
 router.post('/', async (req, res) => {
   const object = JSON.parse(JSON.stringify(req.body))
 
@@ -22,7 +23,7 @@ router.post('/', async (req, res) => {
   } else {
     const customerCheck = await customerDatabase.availableCustomerCheck(object)
     if (customerCheck !== undefined) {
-      res.send('login')
+      res.redirect(`/customer-account/${customerCheck.id}`)
     } else {
       res.redirect('/login')
     }
@@ -49,7 +50,7 @@ router.post('/sign-up', async (req, res) => {
     } else {
       const customer = Customer.create(object)
       await customerDatabase.insert([customer])
-      res.send('ok')
+      res.redirect(`/customer-account/${customer.id}`)
     }
   }
 })

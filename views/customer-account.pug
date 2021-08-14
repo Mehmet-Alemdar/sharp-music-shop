@@ -1,0 +1,33 @@
+extends layout
+block content
+
+    h2 Hi #{customer.name}!
+    form(action="")
+        span #[strong Your Name] 
+        br
+        input(type="text" placeholder="Name" value = `${customer.name}`)
+        br
+        br
+        span #[strong Your Surname] 
+        br
+        input(type="text" placeholder="Surname" value = `${customer.surname}`)
+        br
+        br
+        span #[strong Your E-mail] 
+        br
+        input(type="email" placeholder="E-mail" value = `${customer.email}`)
+        br
+        br
+        span #[strong Your Phone Number] 
+        br
+        input(type="tel" placeholder="Phone Number" value = `${customer.phoneNumber}`)
+        br
+        br
+        span #[strong Your Password]
+        br
+        input(type="text" placeholder="Password" value = `${customer.password}`)
+        br
+        br
+        span #[strong Your Address] 
+        br
+        textarea(name="address", cols="30", rows="10" placeholder="Your Address" value =`${customer.address}`) 
