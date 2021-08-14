@@ -1,0 +1,33 @@
+extends layout
+block content
+
+    h2 Login
+    form(action="/login" method="post")
+        input(type="email" placeholder="E-mail" name="email")
+        br
+        br
+        input(type="password" placeholder="Password" name="password")
+        br
+        br
+        input(type="submit" value="Login" )
+        br
+        br
+        br
+    h2 Sign Up
+    form(action="/login/sign-up" method="post")
+        input(type="text" placeholder="Name" name="name")
+        br
+        br
+        input(type="text" placeholder="Surname" name="surname")
+        br
+        br
+        input(type="email" placeholder="E-mail" name="email")
+        br
+        br
+        input(type="tel" placeholder="Mobile Phone Number" name="phoneNumber")
+        br
+        br
+        input(type="password" placeholder="Password" name="password")
+        br
+        br
+        input(type="submit" value="Sign Up" )
