@@ -4,6 +4,7 @@ const shopsRouter = require('./routes/shops')
 const brandsRouter = require('./routes/brands')
 const customerAccountRouter = require('./routes/customer-account')
 const loginRouter = require('./routes/login')
+require('./mongo-connection')
 
 const app = express()
 
