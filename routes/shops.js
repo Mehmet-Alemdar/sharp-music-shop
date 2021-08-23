@@ -1,11 +1,5 @@
-const {
-  shopDatabase,
-  instrumentDatabase,
-  customerDatabase,
-} = require('../database')
-const Shop = require('../models/shop')
-const Instrument = require('../models/instrument')
-const flatted = require('flatted')
+const { shopDatabase } = require('../database')
+
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {

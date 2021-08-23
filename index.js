@@ -4,8 +4,6 @@ const shopsRouter = require('./routes/shops')
 const brandsRouter = require('./routes/brands')
 const customerAccountRouter = require('./routes/customer-account')
 const loginRouter = require('./routes/login')
-const { instrumentDatabase } = require('./database')
-const bodyParser = require('body-parser')
 
 const app = express()
 

@@ -1,5 +1,4 @@
 const { customerDatabase } = require('../database')
-const Customer = require('../models/customer')
 const router = require('express').Router()
 
 router.get('/:id', async (req, res) => {
