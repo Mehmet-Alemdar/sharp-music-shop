@@ -3,7 +3,7 @@ const { customerDatabase } = require('../database')
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
-  res.render('login')
+  res.render('customer-login')
 })
 
 // login customer account
@@ -19,39 +19,24 @@ router.post('/', async (req, res) => {
   })
 
   if (blankInfoCheck !== true) {
-    res.redirect('/login')
+    res.redirect('/customer-login')
   } else {
     const customerCheck = await customerDatabase.availableCustomerCheck(object)
     if (customerCheck !== undefined) {
-      res.redirect(`/customer-account/${customerCheck.id}`)
+      res.redirect(`/customer/${customerCheck.id}`)
     } else {
-      res.redirect('/login')
+      res.redirect('/customer-login')
     }
   }
 })
 
 // create customer account
 router.post('/sign-up', async (req, res) => {
-  const object = JSON.parse(JSON.stringify(req.body))
+  const object = req.body
 
-  let blankInfoCheck = true
-  Object.keys(object).map(function (key) {
-    if (object[key].trim() === '') {
-      blankInfoCheck = false
-    }
-  })
+  const customer = await customerDatabase.save(object)
 
-  if (blankInfoCheck !== true) {
-    res.redirect('/login')
-  } else {
-    const customerCheck = await customerDatabase.availableCustomerCheck(object)
-    if (customerCheck !== undefined) {
-      res.redirect('/login')
-    } else {
-      const customer = Customer.create(object)
-      await customerDatabase.insert([customer])
-      res.redirect(`/customer-account/${customer.id}`)
-    }
-  }
+  res.send(customer)
 })
+
 module.exports = router

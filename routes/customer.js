@@ -9,7 +9,7 @@ router.get('/:id', async (req, res) => {
   if (customer === undefined) {
     res.send('This customer does not exist')
   } else {
-    res.render('customer-account', { customer })
+    res.render('customer', { customer })
   }
 })
 

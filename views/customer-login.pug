@@ -2,7 +2,7 @@ extends layout
 block content
 
     h2 Login
-    form(action="/login" method="post")
+    form(action="/customer-login" method="post")
         input(type="email" placeholder="E-mail" name="email")
         br
         br
@@ -14,7 +14,7 @@ block content
         br
         br
     h2 Sign Up
-    form(action="/login/sign-up" method="post")
+    form(action="/customer-login/sign-up" method="post")
         input(type="text" placeholder="Name" name="name")
         br
         br
