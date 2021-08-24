@@ -1,9 +1,10 @@
-class Order {
-  constructor(customer, instrument) {
-    this.customer = customer
-    this.destination = customer.address
-    this.instrument = instrument
-  }
-}
+const mongoose = require('mongoose')
 
-module.exports = Order
+const OrderSchema = new mongoose.Schema({
+  customer: {},
+  destinatin: String,
+  instrument: {},
+  shop: {},
+})
+
+mondole.exports = mongoose.model('Order', OrderSchema)
