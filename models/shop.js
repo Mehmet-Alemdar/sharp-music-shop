@@ -1,24 +1,12 @@
-const uuid = require('uuid')
+const mongoose = require('mongoose')
 
-class Shop {
-  constructor(id = uuid.v4(), name, instruments = [], orderHistory = []) {
-    this.id = id
-    this.name = name
-    this.instruments = instruments
-    this.orderHistory = orderHistory
-  }
+const ShopSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+  phoneNumber: Number,
+  instruments: [],
+  orderHistory: [],
+})
 
-  addInstrument(instrument) {
-    this.instruments.push(instrument)
-  }
-
-  addSalesMade(order) {
-    this.orderHistory.push(order)
-  }
-
-  static create({ id, name, instruments, orderHistory }) {
-    return new Shop(id, name, instruments, orderHistory)
-  }
-}
-
-module.exports = Shop
+module.exports = mongoose.model('Shop', ShopSchema)
