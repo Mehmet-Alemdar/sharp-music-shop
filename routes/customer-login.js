@@ -33,9 +33,7 @@ router.post('/', async (req, res) => {
 // create customer account
 router.post('/sign-up', async (req, res) => {
   const object = req.body
-
   const customer = await customerDatabase.save(object)
-
   res.send(customer)
 })
 

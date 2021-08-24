@@ -1,15 +1,36 @@
 const { customerDatabase } = require('../database')
 const router = require('express').Router()
 
-router.get('/:id', async (req, res) => {
+// get customer with id
+router.get('/:id', async (req, res, next) => {
   const { id } = req.params
+  try {
+    const customer = await customerDatabase.find(id)
+    res.send(customer)
+  } catch (e) {
+    console.log('hey')
+    next(e)
+  }
+})
 
-  const customer = await customerDatabase.find(id)
+// delete customer with id
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await customerDatabase.removeBy('_id', req.params.id)
+    res.send('ok')
+  } catch (e) {
+    next(e)
+  }
+})
 
-  if (customer === undefined) {
-    res.send('This customer does not exist')
-  } else {
-    res.render('customer', { customer })
+// update customer with id
+router.patch('/:id', async (req, res, next) => {
+  const { id } = req.params
+  try {
+    const customer = await customerDatabase.update(id, req.body)
+    res.send(customer)
+  } catch (e) {
+    next(e)
   }
 })
 
