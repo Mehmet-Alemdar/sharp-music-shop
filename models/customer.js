@@ -1,55 +1,13 @@
-const Order = require('./order')
-const uuid = require('uuid')
-class Customer {
-  constructor(
-    id = uuid.v4(),
-    name,
-    surname,
-    email,
-    phoneNumber,
-    password,
-    address,
-    orderHistory = []
-  ) {
-    this.id = id
-    this.name = name
-    this.surname = surname
-    this.email = email
-    this.phoneNumber = phoneNumber
-    this.password = password
-    this.address = address
-    this.orderHistory = orderHistory
-  }
+const mongoose = require('mongoose')
 
-  order(instrument) {
-    const order = new Order(this, instrument)
+const CustomerSchema = new mongoose.Schema({
+  name: { type: String, required: true, minLength: 2 },
+  surname: { type: String, required: true, minLength: 2 },
+  email: String,
+  phoneNumber: Number,
+  password: String,
+  address: String,
+  orderHistory: [],
+})
 
-    this.orderHistory.push(order)
-
-    return order
-  }
-
-  static create({
-    id,
-    name,
-    surname,
-    email,
-    phoneNumber,
-    password,
-    address,
-    orderHistory,
-  }) {
-    return new Customer(
-      id,
-      name,
-      surname,
-      email,
-      phoneNumber,
-      password,
-      address,
-      orderHistory
-    )
-  }
-}
-
-module.exports = Customer
+module.exports = mongoose.model('Customer', CustomerSchema)
