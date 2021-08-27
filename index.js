@@ -4,6 +4,7 @@ const shopsRouter = require('./routes/shops')
 const brandsRouter = require('./routes/brands')
 const customerRouter = require('./routes/customer')
 const customerLoginRouter = require('./routes/customer-login')
+const shopLoginRouter = require('./routes/shop-login')
 require('./mongo-connection')
 
 const app = express()
@@ -19,6 +20,7 @@ app.use('/shops', shopsRouter)
 app.use('/brands', brandsRouter)
 app.use('/customer-login', customerLoginRouter)
 app.use('/customer', customerRouter)
+app.use('/shop-login', shopLoginRouter)
 
 app.get('/', async (req, res) => {
   res.render('index')
