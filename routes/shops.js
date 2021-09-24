@@ -2,21 +2,27 @@ const { shopDatabase } = require('../database')
 
 const router = require('express').Router()
 
-router.get('/', async (req, res) => {
-  const shops = await shopDatabase.load()
+// Will not manage store owner information from this page
+// Actions taken here Actions taken for customers to see the store page and store information
 
-  res.render('shops', { shops })
+// Get all shops
+router.get('/', async (req, res, next) => {
+  try {
+    const shops = await shopDatabase.load()
+    res.send(shops)
+  } catch (e) {
+    next(e)
+  }
 })
 
-router.get('/:id', async (req, res) => {
+// Get shop with id
+router.get('/:id', async (req, res, next) => {
   const { id } = req.params
-
-  const shop = await shopDatabase.find(id)
-
-  if (shop) {
-    res.render('shop', { shop })
-  } else {
-    res.send('This shop is not available')
+  try {
+    const shop = await shopDatabase.find(id)
+    res.send(shop)
+  } catch (e) {
+    next(e)
   }
 })
 
