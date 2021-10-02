@@ -7,7 +7,15 @@ const CustomerSchema = new mongoose.Schema({
   phoneNumber: String,
   password: String,
   address: String,
-  orderHistory: [],
+  orderHistory: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order',
+      autopopulate: { maxDepth: 2 },
+    },
+  ],
 })
+
+CustomerSchema.plugin(require('mongoose-autopopulate'))
 
 module.exports = mongoose.model('Customer', CustomerSchema)

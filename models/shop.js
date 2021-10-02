@@ -12,7 +12,15 @@ const ShopSchema = new mongoose.Schema({
       autopopulate: { maxDepth: 1 },
     },
   ],
-  orderHistory: [],
+  orderHistory: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order',
+      autopopulate: { maxDepth: 1 },
+    },
+  ],
 })
+
+ShopSchema.plugin(require('mongoose-autopopulate'))
 
 module.exports = mongoose.model('Shop', ShopSchema)
