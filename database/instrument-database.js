@@ -1,5 +1,6 @@
 const BaseDatabase = require('./base-database')
 const Instrument = require('../models/instrument')
+const shopDatabase = require('./shop-database')
 
 class InstrumentDatabase extends BaseDatabase {
   async findInstrument() {
@@ -43,6 +44,26 @@ class InstrumentDatabase extends BaseDatabase {
         o.model == model &&
         o.shop.name == shop
     )
+  }
+
+  async createInstrument(type, category, kind, brand, model, price, shopId) {
+    const shop = await shopDatabase.find(shopId)
+
+    const instrument = await this.insert({
+      type,
+      category,
+      kind,
+      brand,
+      model,
+      price,
+      shop,
+    })
+
+    shop.instruments.push(instrument)
+
+    await shop.save()
+
+    return instrument
   }
 }
 

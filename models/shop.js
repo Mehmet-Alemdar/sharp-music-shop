@@ -5,7 +5,13 @@ const ShopSchema = new mongoose.Schema({
   email: String,
   password: String,
   phoneNumber: Number,
-  instruments: [],
+  instruments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Instrument',
+      autopopulate: { maxDepth: 1 },
+    },
+  ],
   orderHistory: [],
 })
 

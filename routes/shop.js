@@ -1,4 +1,4 @@
-const { shopDatabase } = require('../database')
+const { shopDatabase, instrumentDatabase } = require('../database')
 const router = require('express').Router()
 
 // Get shop with id
@@ -36,6 +36,24 @@ router.delete('/:id', async (req, res, next) => {
   } catch (e) {
     next(e)
   }
+})
+
+// Create an instrument
+router.post('/:shopId/instrument', async (req, res) => {
+  const { shopId } = req.params
+  const { type, category, kind, brand, model, price } = req.body
+
+  const instrument = await instrumentDatabase.createInstrument(
+    type,
+    category,
+    kind,
+    brand,
+    model,
+    price,
+    shopId
+  )
+
+  res.send(instrument)
 })
 
 module.exports = router
