@@ -1,49 +1,30 @@
 const { instrumentDatabase } = require('../database')
-
-const {
-  getInstrumentType,
-  getInstrumentCategory,
-} = require('../lib/get-instrument-info')
-
 const router = require('express').Router()
 
-//instrument types and categories in database
 router.get('/', async (req, res) => {
   const instruments = await instrumentDatabase.load()
 
-  const instrumentsTypes = getInstrumentType(instruments)
-  const instrumentsCategories = getInstrumentCategory(instruments)
-
-  res.render('instruments', { instrumentsTypes, instrumentsCategories })
+  res.send(instruments)
 })
 
-//we pull the instruments of the specified type from the database
-router.get('/type/:type', async (req, res) => {
-  const { type } = req.params
+router.get('/search', async (req, res) => {
+  const type = req.query.type
+  const category = req.query.category
+  const kind = req.query.kind
+  const brand = req.query.brand
+  const model = req.query.model
 
-  const instruments = await instrumentDatabase.findInstrumentByType(type)
+  const query = {}
 
-  const instrumentsCategories = getInstrumentCategory(instruments)
+  if (type) query.type = type
+  if (category) query.category = category
+  if (kind) query.kind = kind
+  if (brand) query.brand = brand
+  if (model) query.model = model
 
-  res.render('instruments-types', { instrumentsCategories, type })
-})
+  const instruments = await instrumentDatabase.query(query)
 
-//we pull the instruments of the specified category from the database
-router.get('/category/:category', async (req, res) => {
-  const { category } = req.params
-
-  const instruments = await instrumentDatabase.findInstrumentByCategory(
-    category
-  )
-
-  res.render('filtered-instruments', { instruments })
-})
-
-router.get('/instrument/:id', async (req, res) => {
-  const { id } = req.params
-  const instrument = await instrumentDatabase.find(id)
-
-  res.render('instrument', { instrument })
+  res.send(instruments)
 })
 
 module.exports = router

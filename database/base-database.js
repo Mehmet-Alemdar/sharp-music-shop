@@ -23,6 +23,10 @@ class BaseDatabase {
     return this.model.findByIdAndUpdate(id, object)
   }
 
+  async query(obj) {
+    return this.model.find(obj)
+  }
+
   async find(id) {
     return this.model.findById(id)
   }
