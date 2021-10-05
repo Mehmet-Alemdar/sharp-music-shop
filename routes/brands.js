@@ -1,5 +1,5 @@
 const { instrumentDatabase } = require('../database')
-const { getAllBrands } = require('../lib/get-brands')
+const { getAllBrands, getBrandByName } = require('../lib/get-brands')
 const router = require('express').Router()
 
 //We pull the brands in the database.
@@ -10,16 +10,12 @@ router.get('/', async (req, res) => {
 })
 
 //we pull the specified brand from the database
-router.get('/:brand', async (req, res) => {
-  const { brand } = req.params
+router.get('/:brandName', async (req, res) => {
+  const { brandName } = req.params
 
-  const instruments = await instrumentDatabase.findInstrumentByBrand(brand)
+  const instruments = await getBrandByName(brandName)
 
-  if (instruments.length <= 0) {
-    res.send('This brand is not available')
-  } else {
-    res.render('brand', { instruments, brand })
-  }
+  res.render('brand', { instruments })
 })
 
 module.exports = router
