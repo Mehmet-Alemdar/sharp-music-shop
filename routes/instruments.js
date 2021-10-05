@@ -5,7 +5,7 @@ const router = require('express').Router()
 router.get('/', async (req, res) => {
   const instruments = await instrumentDatabase.load()
 
-  res.send(instruments)
+  res.render('instruments', { instruments })
 })
 
 router.get('/search', async (req, res) => {
@@ -31,7 +31,7 @@ router.get('/search', async (req, res) => {
 
   const instruments = await instrumentDatabase.query(query)
 
-  res.send(instruments)
+  res.render('instruments', { instruments })
 })
 
 module.exports = router

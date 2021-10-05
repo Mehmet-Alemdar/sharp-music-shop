@@ -6,7 +6,7 @@ router.get('/:id', async (req, res, next) => {
 
   try {
     const instrument = await instrumentDatabase.find(id)
-    res.send(instrument)
+    res.render('instrument', { instrument })
   } catch (e) {
     next(e)
   }

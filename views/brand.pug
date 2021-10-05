@@ -1,7 +1,7 @@
 extends layout 
 block content 
 
-    h2 #{brand}
+    h2 #{instruments[0].brand}
     ol 
         each instrument in instruments
             p #[strong Type] #{instrument.type}
@@ -10,6 +10,6 @@ block content
             p #[strong Brand] #{instrument.brand}
             p #[strong Kind] #{instrument.kind}
             p #[strong Shop] #[a(href=`/shops/${instrument.shop.id}`) #{instrument.shop.name}]
-             form(action=`/instruments/instrument/${instrument.id}`)
+             form(action=`/instrument/${instrument.id}`)
                     input(type="submit" value="Browse Instrument")
             hr

@@ -10,6 +10,6 @@ block content
                 p #[strong category] #{instrument.category}
                 p #[strong model]    #{instrument.model}
                 p #[strong kind]     #{instrument.kind}
-                form(action=`/instruments/instrument/${instrument.id}`)
+                form(action=`/instrument/${instrument.id}`)
                     input(type="submit" value="Browse Instrument")
                 hr

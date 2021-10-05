@@ -9,7 +9,7 @@ const router = require('express').Router()
 router.get('/', async (req, res, next) => {
   try {
     const shops = await shopDatabase.load()
-    res.send(shops)
+    res.render('shops', { shops })
   } catch (e) {
     next(e)
   }
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
     const shop = await shopDatabase.find(id)
-    res.send(shop)
+    res.render('shop', { shop })
   } catch (e) {
     next(e)
   }
