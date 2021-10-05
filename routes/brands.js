@@ -4,9 +4,7 @@ const router = require('express').Router()
 
 //We pull the brands in the database.
 router.get('/', async (req, res) => {
-  const objects = await instrumentDatabase.load()
-
-  const brands = getAllBrands(objects)
+  const brands = await getAllBrands()
 
   res.render('brands', { brands })
 })
