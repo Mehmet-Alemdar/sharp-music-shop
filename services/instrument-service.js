@@ -1,8 +1,8 @@
-const BaseDatabase = require('./base-database')
+const BaseService = require('./base-service')
 const Instrument = require('../models/instrument')
-const shopDatabase = require('./shop-database')
+const shopService = require('./shop-service')
 
-class InstrumentDatabase extends BaseDatabase {
+class InstrumentService extends BaseService {
   async findInstrument() {
     return await this.load()
   }
@@ -47,7 +47,7 @@ class InstrumentDatabase extends BaseDatabase {
   }
 
   async createInstrument(type, category, kind, brand, model, price, shopId) {
-    const shop = await shopDatabase.find(shopId)
+    const shop = await shopService.find(shopId)
 
     const instrument = await this.insert({
       type,
@@ -67,4 +67,4 @@ class InstrumentDatabase extends BaseDatabase {
   }
 }
 
-module.exports = new InstrumentDatabase(Instrument)
+module.exports = new InstrumentService(Instrument)

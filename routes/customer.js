@@ -1,11 +1,11 @@
-const { customerDatabase, orderDatabase } = require('../database')
+const { customerService, orderService } = require('../services')
 const router = require('express').Router()
 
 // get customer with id
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
-    const customer = await customerDatabase.find(id)
+    const customer = await customerService.find(id)
     res.send(customer)
   } catch (e) {
     console.log('hey')
@@ -16,7 +16,7 @@ router.get('/:id', async (req, res, next) => {
 // delete customer with id
 router.delete('/:id', async (req, res, next) => {
   try {
-    await customerDatabase.removeBy('_id', req.params.id)
+    await customerService.removeBy('_id', req.params.id)
     res.send('ok')
   } catch (e) {
     next(e)
@@ -27,7 +27,7 @@ router.delete('/:id', async (req, res, next) => {
 router.patch('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
-    const customer = await customerDatabase.update(id, req.body)
+    const customer = await customerService.update(id, req.body)
     res.send(customer)
   } catch (e) {
     next(e)
@@ -40,7 +40,7 @@ router.post('/:customerId', async (req, res, next) => {
   const { destination, instrumentId } = req.body
 
   try {
-    const order = await orderDatabase.createOrder(
+    const order = await orderService.createOrder(
       customerId,
       destination,
       instrumentId

@@ -1,9 +1,9 @@
-const { instrumentDatabase, shopDatabase } = require('../database')
+const { instrumentService, shopService } = require('../services')
 
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
-  const instruments = await instrumentDatabase.load()
+  const instruments = await instrumentService.load()
 
   res.render('instruments', { instruments })
 })
@@ -24,12 +24,12 @@ router.get('/search', async (req, res) => {
   if (brand) query.brand = brand
   if (model) query.model = model
   if (shopName) {
-    const shop = await shopDatabase.findBy('name', shopName)
+    const shop = await shopService.findBy('name', shopName)
     query.shop = shop[0]._id
     //shop.map((i) => (query.shop = i._id))
   }
 
-  const instruments = await instrumentDatabase.query(query)
+  const instruments = await instrumentService.query(query)
 
   res.render('instruments', { instruments })
 })

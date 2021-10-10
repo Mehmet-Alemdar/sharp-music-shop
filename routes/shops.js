@@ -1,4 +1,4 @@
-const { shopDatabase } = require('../database')
+const { shopService } = require('../services')
 
 const router = require('express').Router()
 
@@ -8,7 +8,7 @@ const router = require('express').Router()
 // Get all shops
 router.get('/', async (req, res, next) => {
   try {
-    const shops = await shopDatabase.load()
+    const shops = await shopService.load()
     res.render('shops', { shops })
   } catch (e) {
     next(e)
@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
-    const shop = await shopDatabase.find(id)
+    const shop = await shopService.find(id)
     res.render('shop', { shop })
   } catch (e) {
     next(e)

@@ -1,5 +1,5 @@
 const Customer = require('../models/customer')
-const { customerDatabase } = require('../database')
+const { customerService } = require('../services')
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
   if (blankInfoCheck !== true) {
     res.redirect('/customer-login')
   } else {
-    const customerCheck = await customerDatabase.availableCustomerCheck(object)
+    const customerCheck = await customerService.availableCustomerCheck(object)
     if (customerCheck !== undefined) {
       res.redirect(`/customer/${customerCheck.id}`)
     } else {
@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
 // create customer account
 router.post('/sign-up', async (req, res) => {
   const object = req.body
-  const customer = await customerDatabase.save(object)
+  const customer = await customerService.save(object)
   res.send(customer)
 })
 

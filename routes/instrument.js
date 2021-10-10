@@ -1,11 +1,11 @@
-const { instrumentDatabase } = require('../database')
+const { instrumentService } = require('../services')
 const router = require('express').Router()
 
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
 
   try {
-    const instrument = await instrumentDatabase.find(id)
+    const instrument = await instrumentService.find(id)
     res.render('instrument', { instrument })
   } catch (e) {
     next(e)
@@ -17,7 +17,7 @@ router.patch('/:id', async (req, res, next) => {
   const object = req.body
 
   try {
-    const instrument = await instrumentDatabase.update(id, object)
+    const instrument = await instrumentService.update(id, object)
     res.send(instrument)
   } catch {
     next(e)
@@ -28,7 +28,7 @@ router.delete('/:id', async (req, res, next) => {
   const { id } = req.params
 
   try {
-    await instrumentDatabase.removeBy('_id', id)
+    await instrumentService.removeBy('_id', id)
     res.send('ok')
   } catch (e) {
     next(e)

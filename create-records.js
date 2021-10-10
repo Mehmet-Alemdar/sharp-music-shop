@@ -4,10 +4,10 @@ const Instrument = require('./models/instrument')
 const printOrderHistory = require('./lib/print-order')
 
 const {
-  customerDatabase,
-  shopDatabase,
-  instrumentDatabase,
-} = require('./database')
+  customerService,
+  shopService,
+  instrumentService,
+} = require('./services')
 
 // vendor and customer creation process
 const shop = Shop.create({ name: 'Panda Music' })
@@ -84,13 +84,13 @@ shop.addSalesMade(order2)
 async function main() {
   try {
     // customer registration
-    await customerDatabase.save([mehmet])
+    await customerService.save([mehmet])
 
     // shop registration
-    await shopDatabase.save([shop, shop2])
+    await shopService.save([shop, shop2])
 
     // instrument recording
-    await instrumentDatabase.save([
+    await instrumentService.save([
       instrument,
       instrument2,
       instrument3,
@@ -98,7 +98,7 @@ async function main() {
       instrument5,
     ])
 
-    const customers = await customerDatabase.load()
+    const customers = await customerService.load()
 
     customers.forEach(printOrderHistory)
   } catch (e) {

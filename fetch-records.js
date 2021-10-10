@@ -1,29 +1,27 @@
 const {
-  customerDatabase,
-  shopDatabase,
-  instrumentDatabase,
-} = require('./database')
+  customerService,
+  shopService,
+  instrumentService,
+} = require('./services')
 
 async function getInfo() {
   try {
-    // customer in database
-    const customers = await customerDatabase.findByName('Mehmet')
+    // customer in service
+    const customers = await customerService.findByName('Mehmet')
 
-    // shop in database
-    const shops = await shopDatabase.findByShopName('Lion Music')
+    // shop in service
+    const shops = await shopService.findByShopName('Lion Music')
 
-    const shop = await shopDatabase.load()
+    const shop = await shopService.load()
 
-    // instruments in database
-    const instruments = await instrumentDatabase.findInstrument()
+    // instruments in service
+    const instruments = await instrumentService.findInstrument()
 
-    // instruments of the specified type in the database
-    const types = await instrumentDatabase.findInstrumentByType('Wind')
+    // instruments of the specified type in the service
+    const types = await instrumentService.findInstrumentByType('Wind')
 
-    // instruments of the specified model in the database
-    const categorys = await instrumentDatabase.findInstrumentByCategory(
-      'guitar'
-    )
+    // instruments of the specified model in the service
+    const categorys = await instrumentService.findInstrumentByCategory('guitar')
 
     console.log(customers.orderHistory)
   } catch (e) {
