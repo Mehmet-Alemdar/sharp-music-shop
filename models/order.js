@@ -7,11 +7,7 @@ const OrderSchema = new mongoose.Schema({
     autopopulate: { maxDepth: 1 },
   },
   destination: String,
-  instrument: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Instrument',
-    autopopulate: { maxDepth: 1 },
-  },
+  instrument: {},
   shop: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Shop',
