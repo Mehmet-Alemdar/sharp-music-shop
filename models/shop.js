@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const ShopSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
+  name: { type: String, required: true, minLength: 1 },
+  email: { type: String, required: true },
+  password: { type: String, required: true, minLength: 3 },
   phoneNumber: Number,
   instruments: [
     {
