@@ -1,102 +1,49 @@
-const Shop = require('./models/shop')
-const Customer = require('./models/customer')
-const Instrument = require('./models/instrument')
-const printOrderHistory = require('./lib/print-order')
-
+require('./mongo-connection')
 const {
   customerService,
   shopService,
   instrumentService,
+  orderService,
 } = require('./services')
 
-// vendor and customer creation process
-const shop = Shop.create({ name: 'Panda Music' })
-const shop2 = Shop.create({ name: 'Lion Music' })
-const mehmet = Customer.create({
-  name: 'Mehmet',
-  address: 'izmir/karşıyaka...',
-})
+const printOrderHistory = require('./lib/print-order')
 
-// instrument creation process
-const instrument = Instrument.create({
-  type: 'Stringed',
-  category: 'Guitar',
-  kind: 'Electronic',
-  brand: 'Fender',
-  model: 'Stratocaster',
-  price: '1000$',
-  shop,
-})
+const shop = {
+  name: 'Do re',
+  email: 'dore@mail.com',
+  password: 'dorepass',
+  phoneNumber: 234423,
+}
 
-const instrument2 = Instrument.create({
-  type: 'Keyboard',
-  category: 'Stage Keyboards',
-  kind: 'Electronic',
-  brand: 'Yamaha',
-  model: 'YC Series',
-  price: '7899$',
-  shop,
-})
-
-const instrument3 = Instrument.create({
-  type: 'Wind',
-  category: 'Saxophones',
-  kind: 'Tenor saxophones',
-  brand: 'Thomann',
-  model: 'Special series',
-  price: '598$',
-  shop,
-})
-const instrument4 = Instrument.create({
-  type: 'Percussion',
-  category: 'Drum',
-  kind: 'Bass Drum',
-  brand: 'Trick',
-  model: 'Trick AL13 Bass Drum 24 x 18 in. Black Cast',
-  price: '1467,65$',
-  shop: shop2,
-})
-const instrument5 = Instrument.create({
-  type: 'Stringed',
-  category: 'Guitar',
-  kind: 'Classical',
-  brand: 'Yamaha',
-  model: 'NX Series',
-  price: '4467$',
-  shop: shop2,
-})
-
-//the process of adding the instrument to the instrument list of the vendor to which it belongs
-shop.addInstrument(instrument)
-shop.addInstrument(instrument2)
-shop.addInstrument(instrument3)
-shop2.addInstrument(instrument4)
-shop2.addInstrument(instrument5)
-
-//order creation process
-const order = mehmet.order(instrument2)
-const order2 = mehmet.order(instrument)
-
-// the process of adding to the shop's sales history
-shop.addSalesMade(order)
-shop.addSalesMade(order2)
+const customer = {
+  name: 'Teo',
+  surname: 'Dere',
+  email: 'teo@mail.com',
+  phoneNumber: 0067435,
+  password: 'teopass',
+  addredd: 'izmir ksk',
+}
 
 async function main() {
   try {
-    // customer registration
-    await customerService.save([mehmet])
+    const createdShop = await shopService.save(shop)
 
-    // shop registration
-    await shopService.save([shop, shop2])
+    const createdCustomer = await customerService.save(customer)
 
-    // instrument recording
-    await instrumentService.save([
-      instrument,
-      instrument2,
-      instrument3,
-      instrument4,
-      instrument5,
-    ])
+    const createdInstrument = await instrumentService.createInstrument(
+      'String',
+      'Guitar',
+      'Electro',
+      'Fender',
+      'Stratocaster',
+      234423,
+      createdShop[0]._id
+    )
+    const order = await orderService.createOrder(
+      createdCustomer[0]._id,
+      'izmir göztepe',
+      createdInstrument._id
+    )
 
     const customers = await customerService.load()
 
