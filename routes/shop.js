@@ -1,6 +1,17 @@
 const { shopService, instrumentService } = require('../services')
 const router = require('express').Router()
 
+// Get all shops
+router.get('/', async (req, res, next) => {
+  try {
+    const shops = await shopService.load()
+    // res.render('shops', { shops })
+    res.send(shops)
+  } catch (e) {
+    next(e)
+  }
+})
+
 // Get shop with id
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
@@ -41,7 +52,7 @@ router.delete('/:id', async (req, res, next) => {
 // Create an instrument
 router.post('/:shopId/instrument', async (req, res) => {
   const { shopId } = req.params
-  const { type, category, kind, brand, model, price } = req.body
+  const { type, category, kind, brand, model, price, stock } = req.body
 
   const instrument = await instrumentService.createInstrument(
     type,
@@ -50,6 +61,7 @@ router.post('/:shopId/instrument', async (req, res) => {
     brand,
     model,
     price,
+    stock,
     shopId
   )
 

@@ -1,6 +1,35 @@
 const { instrumentService } = require('../services')
 const router = require('express').Router()
 
+router.get('/', async (req, res) => {
+  const instruments = await instrumentService.load()
+
+  // res.render('instruments', { instruments })
+  res.send(instruments)
+})
+
+router.get('/search', async (req, res) => {
+  const type = req.query.type
+  const category = req.query.category
+  const kind = req.query.kind
+  const brand = req.query.brand
+  const model = req.query.model
+
+  const query = {}
+
+  if (type) query.type = type
+  if (category) query.category = category
+  if (kind) query.kind = kind
+  if (brand) query.brand = brand
+  if (model) query.model = models
+
+  const instruments = await instrumentService.query(query)
+
+  //res.render('instruments', { instruments })
+
+  res.send(instruments)
+})
+
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
 

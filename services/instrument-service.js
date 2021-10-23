@@ -7,6 +7,16 @@ class InstrumentService extends BaseService {
     return await this.load()
   }
 
+  async createInstrument(
+    type,
+    category,
+    kind,
+    brand,
+    model,
+    price,
+    stock,
+    shopId
+  ) {
   async findInstrumentByType(type) {
     const objects = await this.load()
 
@@ -56,7 +66,7 @@ class InstrumentService extends BaseService {
       brand,
       model,
       price,
-      shop,
+      stock,
     })
 
     shop.instruments.push(instrument)
