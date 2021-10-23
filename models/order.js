@@ -6,8 +6,14 @@ const OrderSchema = new mongoose.Schema({
     ref: 'Customer',
     autopopulate: { maxDepth: 1 },
   },
-  destination: String,
-  instrument: {},
+  destination: { type: String, required: true, minLength: 2 },
+  quantity: { type: Number, required: true, min: 1 },
+  price: { type: Number, required: true, min: 1 },
+  instrument: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Instrument',
+    autopopulate: { maxDepth: 1 },
+  },
   shop: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Shop',

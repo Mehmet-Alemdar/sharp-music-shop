@@ -6,20 +6,38 @@ const shopService = require('./shop-service')
 const Order = require('../models/order')
 
 class OrderService extends BaseService {
-  async createOrder(customerId, destination, instrumentId) {
+  async createOrder(customerId, destination, quantity, instrumentId, shopId) {
     const customer = await customerService.find(customerId)
     const instrument = await instrumentService.find(instrumentId)
     //console.log(instrument.shop._id)
     const shopId = instrument.shop._id
     const shop = await shopService.find(shopId)
 
-    const order = await this.insert({ customer, destination, instrument, shop })
+    if (quantity <= 0) return 'invalid'
 
+    const price = instrument.price * quantity
     customer.orderHistory.push(order)
     shop.orderHistory.push(order)
     await customer.save()
     await shop.save()
 
+    let stock = instrument.stock
+    if (stock >= quantity) {
+      const order = await this.insert({
+        customer,
+        destination,
+        quantity,
+        price,
+        instrument,
+        shop,
+      })
+      stock -= quantity
+      await instrumentService.update(instrumentId, { stock })
+
+      return order
+    }
+
+    return 'not enough stock'
     await instrumentService.removeBy('_id', instrumentId)
 
     const updatedShop = await shopService.find(shopId)
