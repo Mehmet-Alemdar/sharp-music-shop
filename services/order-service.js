@@ -10,7 +10,6 @@ class OrderService extends BaseService {
     const customer = await customerService.find(customerId)
     const instrument = await instrumentService.find(instrumentId)
     //console.log(instrument.shop._id)
-    const shopId = instrument.shop._id
     const shop = await shopService.find(shopId)
 
     if (quantity <= 0) return 'invalid'
