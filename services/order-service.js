@@ -35,7 +35,6 @@ class OrderService extends BaseService {
     return 'not enough stock'
 
 
-    return order
   }
 }
 
