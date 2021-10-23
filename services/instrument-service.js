@@ -34,6 +34,16 @@ class InstrumentService extends BaseService {
 
     return instrument
   }
+
+  getInstrumentByStockInfo(instruments) {
+    let instrumentsInStock = []
+
+    instruments.map((i) => {
+      if (i.stock > 0) instrumentsInStock.push(i)
+    })
+
+    return instrumentsInStock
+  }
 }
 
 module.exports = new InstrumentService(Instrument)
