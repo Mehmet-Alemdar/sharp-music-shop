@@ -6,7 +6,6 @@ class InstrumentService extends BaseService {
   async findInstrument() {
     return await this.load()
   }
-
   async createInstrument(
     type,
     category,
@@ -17,7 +16,6 @@ class InstrumentService extends BaseService {
     stock,
     shopId
   ) {
-  async createInstrument(type, category, kind, brand, model, price, shopId) {
     const shop = await shopService.find(shopId)
 
     const instrument = await this.insert({
