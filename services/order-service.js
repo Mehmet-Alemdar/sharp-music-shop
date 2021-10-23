@@ -33,7 +33,6 @@ class OrderService extends BaseService {
     }
 
     return 'not enough stock'
-    await instrumentService.removeBy('_id', instrumentId)
 
 
     return order
