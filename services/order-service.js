@@ -16,8 +16,6 @@ class OrderService extends BaseService {
     if (quantity <= 0) return 'invalid'
 
     const price = instrument.price * quantity
-    customer.orderHistory.push(order)
-    await customer.save()
 
     let stock = instrument.stock
     if (stock >= quantity) {
