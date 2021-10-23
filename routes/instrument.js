@@ -24,9 +24,6 @@ router.get('/search', async (req, res) => {
   if (model) query.model = models
 
   const instruments = await instrumentService.query(query)
-
-  //res.render('instruments', { instruments })
-
   res.send(instruments)
 })
 
@@ -35,7 +32,7 @@ router.get('/:id', async (req, res, next) => {
 
   try {
     const instrument = await instrumentService.find(id)
-    res.render('instrument', { instrument })
+    res.send(instrument)
   } catch (e) {
     next(e)
   }

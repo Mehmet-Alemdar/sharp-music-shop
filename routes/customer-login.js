@@ -3,7 +3,7 @@ const { customerService } = require('../services')
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
-  res.render('customer-login')
+  res.send('customer-login-page')
 })
 
 // login customer account
@@ -19,13 +19,13 @@ router.post('/', async (req, res) => {
   })
 
   if (blankInfoCheck !== true) {
-    res.redirect('/customer-login')
+    res.send('empty customer object')
   } else {
     const customerCheck = await customerService.availableCustomerCheck(object)
     if (customerCheck !== undefined) {
-      res.redirect(`/customer/${customerCheck.id}`)
+      res.send('customer login with id ')
     } else {
-      res.redirect('/customer-login')
+      res.send('customer login ')
     }
   }
 })

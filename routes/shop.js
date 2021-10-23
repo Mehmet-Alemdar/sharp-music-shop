@@ -5,7 +5,6 @@ const router = require('express').Router()
 router.get('/', async (req, res, next) => {
   try {
     const shops = await shopService.load()
-    // res.render('shops', { shops })
     res.send(shops)
   } catch (e) {
     next(e)

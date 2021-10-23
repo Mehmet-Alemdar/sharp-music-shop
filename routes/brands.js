@@ -6,7 +6,7 @@ const router = require('express').Router()
 router.get('/', async (req, res) => {
   const brands = await getAllBrands()
 
-  res.render('brands', { brands })
+  res.send(brands)
 })
 
 //we pull the specified brand from the service
@@ -15,7 +15,7 @@ router.get('/:brandName', async (req, res) => {
 
   const instruments = await getBrandByName(brandName)
 
-  res.render('brand', { instruments })
+  res.send(instruments)
 })
 
 module.exports = router
