@@ -17,9 +17,7 @@ class OrderService extends BaseService {
 
     const price = instrument.price * quantity
     customer.orderHistory.push(order)
-    shop.orderHistory.push(order)
     await customer.save()
-    await shop.save()
 
     let stock = instrument.stock
     if (stock >= quantity) {
@@ -40,8 +38,6 @@ class OrderService extends BaseService {
     return 'not enough stock'
     await instrumentService.removeBy('_id', instrumentId)
 
-    const updatedShop = await shopService.find(shopId)
-    await shopService.update(shopId, updatedShop)
 
     return order
   }
