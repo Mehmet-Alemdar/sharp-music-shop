@@ -41,7 +41,8 @@ router.delete('/:id', async (req, res, next) => {
   const { id } = req.params
 
   try {
-    await shopService.removeBy('_id', id)
+    await shopService.deleteTheShopAndItsInstruments(id)
+
     res.send('ok')
   } catch (e) {
     next(e)
