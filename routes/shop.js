@@ -53,7 +53,7 @@ router.post('/:shopId/instrument', async (req, res) => {
   const { shopId } = req.params
   const { type, category, kind, brand, model, price, stock } = req.body
 
-  const instrument = await instrumentService.createInstrument(
+  const instrument = await shopService.createInstrument(
     type,
     category,
     kind,
