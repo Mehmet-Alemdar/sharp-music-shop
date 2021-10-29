@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon --ignore '*.json'",
+    "start": "node index.js .bin/www",
+    "watch": "nodemon --ignore '*.json' .bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mehmet Alemdar",

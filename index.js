@@ -28,6 +28,4 @@ app.get('/', async (req, res) => {
   res.render('index')
 })
 
-app.listen(3000, () => {
-  console.log('started listening on 3000')
-})
+module.exports = app
