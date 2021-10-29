@@ -50,7 +50,7 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 // Create an instrument
-router.post('/:shopId/instrument', async (req, res) => {
+router.post('/:shopId', async (req, res) => {
   const { shopId } = req.params
   const { type, category, kind, brand, model, price, stock } = req.body
 
