@@ -8,6 +8,7 @@ const InstrumentSchema = new mongoose.Schema({
   model: { type: String, required: true, minLength: 1 },
   price: { type: Number, required: true, minLength: 1 },
   stock: { type: Number, required: true, minLength: 1 },
+  imageUrl : {type: String, required:true}
   // shop: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Shop',

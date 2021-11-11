@@ -15,6 +15,7 @@ class ShopService extends BaseService {
     model,
     price,
     stock,
+    imageUrl,
     shopId
   ) {
     const shop = await this.find(shopId)
@@ -27,6 +28,7 @@ class ShopService extends BaseService {
       model,
       price,
       stock,
+      imageUrl
     })
 
     shop.instruments.push(instrument)
