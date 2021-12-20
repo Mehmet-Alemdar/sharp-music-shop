@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const InstrumentSchema = new mongoose.Schema({
-  type: { type: String, required: true, minLength: 1 },
+  type: { type: String, required: true, minLength: 1},
   category: { type: String, required: true, minLength: 1 },
-  kind: { type: String, required: true, minLength: 1 },
+  kind: { type: String, required: true, minLength: 1},
   brand: { type: String, required: true, minLength: 1 },
   model: { type: String, required: true, minLength: 1 },
   price: { type: Number, required: true, minLength: 1 },
@@ -15,6 +15,8 @@ const InstrumentSchema = new mongoose.Schema({
   //   autopopulate: { maxDepth: 1 },
   // },
 })
+
+InstrumentSchema.index({ '$**': 'text' })
 
 InstrumentSchema.plugin(require('mongoose-autopopulate'))
 

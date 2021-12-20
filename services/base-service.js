@@ -34,6 +34,10 @@ class BaseService {
   async findBy(property, value) {
     return this.model.find({ [property]: value })
   }
+
+  async findSearchedInstrument(q){
+    return await this.model.find( { $text: { $search: q} } )
+  }
 }
 
 module.exports = BaseService
