@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const instrumentRouter = require('./routes/instrument')
 const customerRouter = require('./routes/customer')
 const customerLoginRouter = require('./routes/customer-login')
@@ -10,7 +11,7 @@ require('./mongo-connection')
 const app = express()
 
 app.use(express.json())
-
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 
 app.set('view engine', 'pug')
