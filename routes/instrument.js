@@ -1,11 +1,11 @@
 const { instrumentService } = require('../services')
+const {getInstrumentCategory,getInstrumentBrand, getInstrumentType} = require("../lib/get-instrument-info")
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
   const instruments = await instrumentService.load()
 
-  // res.render('instruments', { instruments })
-  res.send(instrumentService.getInstrumentByStockInfo(instruments))
+  res.send(instruments)
 })
 
 router.get('/search', async (req, res) => {
@@ -28,9 +28,20 @@ router.get('/search', async (req, res) => {
   res.send(instrumentService.getInstrumentByStockInfo(instruments))
 })
 
+router.get("/categories", async(req,res,next) => {
+  const categories = await getInstrumentCategory()
+  res.send(categories)
+})
+//We pull the brands in the service.
+router.get('/brands', async (req, res) => {
+  const brands = await getInstrumentBrand()
+
+  res.send(brands)
+})
+
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
-
+  
   try {
     const instrument = await instrumentService.find(id)
     res.send(instrumentService.getInstrumentByStockInfo([instrument]))
