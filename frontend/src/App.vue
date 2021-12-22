@@ -2,6 +2,7 @@
   #app
     #nav
       router-link(to='/') Home
+      router-link(to='/instrument')  | Instruments
       .search
         form(action='/search' method="GET")
           input(name="query" id="query")

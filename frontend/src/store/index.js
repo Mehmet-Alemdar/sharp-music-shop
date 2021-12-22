@@ -24,6 +24,10 @@ export default new Vuex.Store({
       const request = await axios.get('/instrument/categories')
       return request.data
     },
+    async fetchInstruments () {
+      const request = await axios.get('/instrument')
+      return request.data
+    },
     async fetchSearchedInstruments ({ commit, state }, playload) {
       const request = await axios.get('/search', { params: { query: playload } })
       return request.data
