@@ -1,4 +1,4 @@
-## To run the project with nodemon
+## To run the backend with nodemon
 > npm run watch
 ## To run the frontend
 ### Firstly
