@@ -32,15 +32,15 @@ export default {
 
 <style lang="scss">
   .container {
-    display: block;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto
   }
   .instruments{
     display: flex;
     flex-wrap: wrap;
-    width: 1160px;
-    height: auto;
-    margin: 0 auto;
-    //ackground-color: blanchedalmond;
+    width: 68em;
+    height: 100%;
   }
   .instrument {
     position: relative;
@@ -50,7 +50,7 @@ export default {
     box-shadow: 0 0 1px 1px rgb(167, 167, 167);
     transition: 0.15s;
     padding-bottom: 20px;
-    margin: 20px;
+    margin: 11px;
   }
   .instrument:hover {
     box-shadow: 0 0 10px 1px rgb(167, 167, 167);
