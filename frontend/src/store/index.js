@@ -16,12 +16,20 @@ export default new Vuex.Store({
       const request = await axios.get('/shop')
       return request.data
     },
+    async fetchTypes () {
+      const request = await axios.get('/instrument/types')
+      return request.data
+    },
     async fetchBrands () {
       const request = await axios.get('/instrument/brands')
       return request.data
     },
     async fetchCategories () {
       const request = await axios.get('/instrument/categories')
+      return request.data
+    },
+    async fetchKinds () {
+      const request = await axios.get('/instrument/kinds')
       return request.data
     },
     async fetchInstruments () {

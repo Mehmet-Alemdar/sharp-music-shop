@@ -7,7 +7,7 @@
         form(action='/search' method="GET")
           input(name="query" id="query")
           button Search
-      router-view
+    router-view
 </template>
 
 <style lang="scss">
