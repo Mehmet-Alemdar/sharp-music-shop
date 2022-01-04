@@ -28,29 +28,37 @@ export default {
 .container
   .sidebar
     #filter.types
-      h4 Types
-      ul(v-for="type in types")
-        li
-          input(type="checkbox" name="checkbox-type")
-          label(for="checkbox-type") {{type}}
+      h4.filter-name Types
+      hr
+      .filter-list
+        ul(v-for="type in types")
+          li
+            input(type="checkbox" name="checkbox-type")
+            label(for="checkbox-type") {{type}}
     #filter.categories
-      h4 Categories
-      ul(v-for="category in categories")
-        li
-          input(type="checkbox")
-          label {{category}}
+      h4.filter-name Categories
+      hr
+      .filter-list
+        ul(v-for="category in categories")
+          li
+            input(type="checkbox")
+            label {{category}}
     #filter.kinds
-      h4 Kinds
-      ul(v-for="kind in kinds")
-        li
-          input(type="checkbox")
-          label {{kind}}
+      h4.filter-name Kinds
+      hr
+      .filter-list
+        ul(v-for="kind in kinds")
+          li
+            input(type="checkbox")
+            label {{kind}}
     #filter.brands
-      h4 Brands
-      ul(v-for="brand in brands")
-        li
-          input(type="checkbox")
-          label {{brand}}
+      h4.filter-name Brands
+      hr
+      .filter-list
+        ul(v-for="brand in brands")
+          li
+            input(type="checkbox")
+            label {{brand}}
   .instruments(v-if="instruments.length")
     .instrument(v-for="instrument in instruments")
       img.instrument-image(:src="`${instrument.imageUrl}`")
@@ -71,35 +79,53 @@ export default {
     grid-template-areas:"sidebar instruments";
     gap: 0.5em;
   }
-  #filter{
-    background-color: rgba(148, 148, 148, 0.3);
-    padding: 5px 10px 20px 0px;
-    margin-top: 20px;
-    border-radius: 8px;
-  }
   .sidebar{
     grid-area: sidebar;
-    width: 14em;
+    width: 16em;
     margin-left: 10px;
     padding-bottom: 40px;
   }
-  ul {
-    list-style-type: none;
+  #filter{
+    background-color: rgba(148, 148, 148, 0.3);
+    padding: 5px 0px 20px 0px;
+    margin-top: 20px;
+    border-radius: 8px;
   }
-  label{
+  .filter-name {
+    color: black;
+  }
+  .filter-list  {
+    width: 15em;
+    min-height: 100px;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  .filter-list::-webkit-scrollbar {
+    width: 5px;
+  }
+  .filter-list::-webkit-scrollbar-track {
+    background-color: rgb(197, 197, 197);
+    border-radius: 10px;
+  }
+  .filter-list::-webkit-scrollbar-thumb {
+    background: rgb(68, 68, 68);
+    border-radius: 10px;
+  }
+  .filter-list ul {
+    list-style-type: none;
+    padding-left: 12px;
+  }
+  #filter label{
     display: flex;
     font-family:serif;
     color: black;
-    font-size: 17px;
+    font-size: 18px;
     padding-left: 10px;
-    padding-right: 20px;
   }
   input[type=checkbox] {
     float: left;
     width: 1.2em;
     height: 1.2em;
-    position: absolute;
-    left: 30px;
   }
   .instruments {
     grid-area: instruments;
