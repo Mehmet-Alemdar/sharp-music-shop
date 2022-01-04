@@ -54,9 +54,10 @@ export default {
   .instruments(v-if="instruments.length")
     .instrument(v-for="instrument in instruments")
       img.instrument-image(:src="`${instrument.imageUrl}`")
-      p {{instrument.brand}}
-      p {{instrument.model}}
-      p {{instrument.price}} $
+      h3.brand {{instrument.brand}}
+      p.model {{instrument.model}}
+      p.price {{instrument.price}} $
+      button.basket-button Add To Basket
 </template>
 
 <style lang="scss">
@@ -109,25 +110,56 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
   }
   .instrument {
+    position: relative;
+    cursor: pointer;
     width: 250px;
     height: 410px;
-    box-shadow: 0 0 1px 1px rgb(185, 185, 185);
+    box-shadow: 0px 0px 2px 1.2px rgb(226, 226, 226);
     border-radius: 2px;
     margin-left: 20px;
     margin-top: 20px;
     transition: 0.15s;
     padding: 10px 10px 20px 10px;
-    content: point;
+
   }
   .instrument:hover {
-    box-shadow: 0 0 10px 1px rgb(167, 167, 167);
+    box-shadow: 0 0 20px 1px rgb(226, 226, 226);
+    .basket-button {
+      visibility: visible;
+      height: 40px;
+      transition: 0.25s;
+    }
   }
   .instrument-image {
     width: 100%;
     height: 240px;
   }
-  .page {
-    margin-bottom: 50px;
+  .brand, .model {
+    margin:5px 0px 0px 0px;
+  }
+  .price {
+    position: absolute;
+    bottom: 40px;
+    left: 38%;
+  }
+  .basket-button {
+    width: 100%;
+    height: 25px;
+    cursor: pointer;
+    border: none;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-color: #C70039;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    color: white;
+    visibility: hidden;
+  }
+  .basket-button:hover {
+    background-color: #b60034;
   }
 
   @media (min-width: 1200px) {
