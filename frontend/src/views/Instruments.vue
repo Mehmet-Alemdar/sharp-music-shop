@@ -19,7 +19,7 @@ export default {
     this.brands = await this.fetchBrands()
   },
   methods: {
-    ...mapActions(['fetchInstruments', 'fetchCategories', 'fetchBrands', 'fetchTypes', 'fetchKinds', 'fecthInstrumentsByPageNumber'])
+    ...mapActions(['fetchInstruments', 'fetchCategories', 'fetchBrands', 'fetchTypes', 'fetchKinds', 'fetchInstrumentsByPageNumber'])
   }
 }
 </script>
@@ -61,8 +61,11 @@ export default {
             label {{brand}}
   .instruments(v-if="instruments.length")
     .instrument(v-for="instrument in instruments")
+      .shop
+        a(v-bind:href='"/shop/"+instrument.shop.name') {{instrument.shop.name}}
+      hr
       img.instrument-image(:src="`${instrument.imageUrl}`")
-      h3.brand {{instrument.brand}}
+      h4.brand {{instrument.brand}}
       p.model {{instrument.model}}
       p.price {{instrument.price}} $
       button.basket-button Add To Basket
@@ -139,13 +142,13 @@ export default {
     position: relative;
     cursor: pointer;
     width: 250px;
-    height: 410px;
+    height: 415px;
     box-shadow: 0px 0px 2px 1.2px rgb(226, 226, 226);
     border-radius: 2px;
     margin-left: 20px;
     margin-top: 20px;
     transition: 0.15s;
-    padding: 10px 10px 20px 10px;
+    padding: 10px 10px 25px 10px;
 
   }
   .instrument:hover {
@@ -156,16 +159,22 @@ export default {
       transition: 0.25s;
     }
   }
+  .shop a {
+    color: rgb(80, 154, 156);
+  }
+  .shop a:hover {
+    color: rgb(39, 105, 109);
+  }
   .instrument-image {
-    width: 100%;
-    height: 240px;
+    width: 90%;
+    height: 230px;
   }
   .brand, .model {
-    margin:5px 0px 0px 0px;
+    margin:3px 2px 0px 2px;
   }
   .price {
     position: absolute;
-    bottom: 40px;
+    bottom: 45px;
     left: 38%;
   }
   .basket-button {
