@@ -28,7 +28,8 @@ class ShopService extends BaseService {
       model,
       price,
       stock,
-      imageUrl
+      imageUrl,
+      shop
     })
 
     shop.instruments.push(instrument)
