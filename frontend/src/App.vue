@@ -11,6 +11,9 @@
 </template>
 
 <style lang="scss">
+body {
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -73,6 +76,12 @@
 
 .search-button:hover  {
   background-color: rgb(224, 52, 0);
+}
+
+@media (max-width: 1200px) {
+  #nav {
+    width: 75em;
+  }
 }
 
 </style>
