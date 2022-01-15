@@ -20,12 +20,29 @@ export default {
   },
   methods: {
     ...mapActions(['fetchInstruments', 'fetchCategories', 'fetchBrands', 'fetchTypes', 'fetchKinds', 'fetchInstrumentsByPageNumber'])
+    sortByPrice: async function (by) {
+      let returnValue = 0
+      if (by === 'low') returnValue = -1
+      if (by === 'high') returnValue = 1
+      function compare (a, b) {
+        if (a.price < b.price) {
+          return returnValue
+        }
+        if (a.price > b.price) {
+          return -returnValue
+        }
+        return returnValue
+      }
+      this.instruments = this.instruments.sort(compare)
+    }
   }
 }
 </script>
 
 <template lang="pug">
 .container
+  button(v-on:click="sortByPrice('low')").low-price-button Low price to High price
+  button(v-on:click="sortByPrice('high')").high-price-button High price to Low price
   .sidebar
     #filter.types
       h4.filter-name Types
