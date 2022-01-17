@@ -41,8 +41,9 @@ export default {
 
 <template lang="pug">
 .container
-  button(v-on:click="sortByPrice('low')").low-price-button Low price to High price
-  button(v-on:click="sortByPrice('high')").high-price-button High price to Low price
+  .sort-container
+    button(v-on:click="sortByPrice('low')").low-price-button#sort-button Low Price To High Price
+    button(v-on:click="sortByPrice('high')").high-price-button#sort-button High Price To Low Price
   .sidebar
     #filter.types
       h4.filter-name Types
@@ -95,9 +96,33 @@ export default {
     display: grid;
     width: 75em;
     grid-template-columns: 0.2fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas:"sidebar instruments";
+    grid-template-rows: 0.06fr 1fr;
+    grid-template-areas:"sidebar sortContainer"
+                        "sidebar instruments";
     gap: 0.5em;
+  }
+  .sort-container {
+    grid-area: sortContainer;
+    background-color: rgb(220, 220, 220);
+    margin: 20px 15px 0px 20px;
+    padding: 10px 0 10px 0;
+    border-radius: 4px;
+  }
+  #sort-button {
+    border: none;
+    margin: 0 2rem 0 2rem;
+    padding: 0.4rem;
+    font-size: 16px;
+    border-radius: 3px;
+    background-color: rgb(220, 220, 220);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
+  }
+  #sort-button:hover {
+    background-color: rgb(236, 236, 236);
+  }
+  #sort-button:focus {
+    background-color: white;
   }
   .sidebar{
     grid-area: sidebar;
@@ -166,7 +191,6 @@ export default {
     margin-top: 20px;
     transition: 0.15s;
     padding: 10px 10px 25px 10px;
-
   }
   .instrument:hover {
     box-shadow: 0 0 20px 1px rgb(226, 226, 226);
