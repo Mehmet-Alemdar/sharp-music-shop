@@ -46,7 +46,7 @@ export default {
     button(v-on:click="sortByPrice('high')").high-price-button#sort-button High Price To Low Price
   .sidebar
     #filter.types
-      h4.filter-name Types
+      h5.filter-name Types
       hr
       .filter-list
         ul(v-for="type in types")
@@ -54,7 +54,7 @@ export default {
             input(type="checkbox" name="checkbox-type")
             label(for="checkbox-type") {{type}}
     #filter.categories
-      h4.filter-name Categories
+      h5.filter-name Categories
       hr
       .filter-list
         ul(v-for="category in categories")
@@ -62,7 +62,7 @@ export default {
             input(type="checkbox")
             label {{category}}
     #filter.kinds
-      h4.filter-name Kinds
+      h5.filter-name Kinds
       hr
       .filter-list
         ul(v-for="kind in kinds")
@@ -70,7 +70,7 @@ export default {
             input(type="checkbox")
             label {{kind}}
     #filter.brands
-      h4.filter-name Brands
+      h5.filter-name Brands
       hr
       .filter-list
         ul(v-for="brand in brands")
@@ -83,7 +83,7 @@ export default {
         a(v-bind:href='"/shop/"+instrument.shop.name') {{instrument.shop.name}}
       hr
       img.instrument-image(:src="`${instrument.imageUrl}`")
-      h4.brand {{instrument.brand}}
+      h5.brand {{instrument.brand}}
       p.model {{instrument.model}}
       p.price {{instrument.price}} $
       button.basket-button Add To Basket
@@ -138,6 +138,10 @@ export default {
   }
   .filter-name {
     color: black;
+    padding-top: 0.5rem;
+  }
+  #filter hr {
+    margin: 10px 0 15px 0;
   }
   .filter-list  {
     width: 15em;
@@ -171,6 +175,7 @@ export default {
     float: left;
     width: 1.2em;
     height: 1.2em;
+    margin-top: 0.2rem;
   }
   .instruments {
     grid-area: instruments;
@@ -202,20 +207,24 @@ export default {
   }
   .shop a {
     color: rgb(80, 154, 156);
+    text-decoration: none;
   }
   .shop a:hover {
     color: rgb(39, 105, 109);
   }
+  .instrument hr {
+    margin: 0 0 5px 0;
+  }
   .instrument-image {
     width: 90%;
-    height: 230px;
+    height: 55%;
   }
   .brand, .model {
     margin:3px 2px 0px 2px;
   }
   .price {
     position: absolute;
-    bottom: 45px;
+    bottom: 2.3rem;
     left: 38%;
   }
   .basket-button {
