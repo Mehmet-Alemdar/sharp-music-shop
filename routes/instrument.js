@@ -3,6 +3,20 @@ const {getInstrumentCategory,getInstrumentBrand, getInstrumentType, getInstrumen
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
+  // this codes for filter instrument
+  const query = req.query.filter
+  instruments = await instrumentService.load()
+  if(query){
+    instruments = await instruments.filter((i) => {
+      return (
+        i.type.match(query) ||
+        i.category.match(query) ||
+        i.kind.match(query) ||
+        i.brand.match(query)
+      )
+    })
+  }
+  
   const instruments = await instrumentService.load()
 
   res.send(instruments)
