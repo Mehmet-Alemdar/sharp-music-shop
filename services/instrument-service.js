@@ -10,12 +10,12 @@ class InstrumentService extends BaseService {
     const instruments = await this.load()
     const searchedInstruments = instruments.filter ((i) => {
       return (
-        i.type.match(query) ||
-        i.category.match(query) ||
-        i.kind.match(query) ||
-        i.brand.match(query) ||
-        i.model.match(query) ||
-        i.shop.name.match(query)
+        i.type.toUpperCase().match(query.toUpperCase()) ||
+        i.category.toUpperCase().match(query.toUpperCase()) ||
+        i.kind.toUpperCase().match(query.toUpperCase()) ||
+        i.brand.toUpperCase().match(query.toUpperCase()) ||
+        i.model.toUpperCase().match(query.toUpperCase()) ||
+        i.shop.name.toUpperCase().match(query.toUpperCase())
       )
     })
     return searchedInstruments
