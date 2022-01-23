@@ -1,5 +1,6 @@
 <script>
 import { mapActions } from 'vuex'
+import Instruments from '@/components/Instruments.vue'
 export default {
   name: 'Search',
   data () {
@@ -13,24 +14,15 @@ export default {
   },
   methods: {
     ...mapActions(['fetchSearchedInstruments'])
+  },
+  components: {
+    Instruments
   }
 }
 </script>
 
 <template lang="pug">
-  .search
-    h1 search page
-    .instruments(v-if="instruments.length > 0")
-      .instrument(v-for="instrument in instruments")
-        p {{ instrument.type }}
-        p {{ instrument.category }}
-        p {{ instrument.kind }}
-        p {{ instrument.brand }}
-        p {{ instrument.model }}
-        p {{ instrument.price }}
-        hr
-    .instruments(v-else)
-      p none
+  Instruments(:instruments="this.instruments")
 </template>
 
 <style lang="scss">
