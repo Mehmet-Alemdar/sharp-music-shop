@@ -9,6 +9,23 @@ export default {
       categories: [],
       kinds: [],
       brands: []
+      perPage: 9,
+      currentPage: 1
+    }
+  },
+  computed: {
+    rows () {
+      return this.instruments.length
+    },
+    instrumentsByPage () {
+      return this.instruments.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      )
+    },
+    fetchInstrumentsByPage () {
+      this.scrollToTop()
+      return this.instrumentsByPage
     }
   },
   async mounted () {
@@ -34,6 +51,9 @@ export default {
         return returnValue
       }
       this.instruments = this.instruments.sort(compare)
+    },
+    scrollToTop () {
+      window.scrollTo(0, 0)
     }
   }
 }
@@ -87,6 +107,9 @@ export default {
       p.model {{instrument.model}}
       p.price {{instrument.price}} $
       button.basket-button Add To Basket
+  .pagination
+    .overflow-auto
+      b-pagination(v-model="currentPage", :total-rows="rows", :per-page="perPage" v-on:click="scrollToTop()")
 </template>
 
 <style lang="scss">
@@ -96,10 +119,20 @@ export default {
     display: grid;
     width: 75em;
     grid-template-columns: 0.2fr 1fr;
-    grid-template-rows: 0.06fr 1fr;
+    grid-template-rows: 0.06fr 1fr 0.06fr;
     grid-template-areas:"sidebar sortContainer"
-                        "sidebar instruments";
+                        "sidebar instruments"
+                        "pagination pagination";
     gap: 0.5em;
+  }
+  .pagination {
+    grid-area: pagination;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+  .overflow-auto {
+    margin: 0 auto;
+    padding-left: 10rem;
   }
   .sort-container {
     grid-area: sortContainer;
