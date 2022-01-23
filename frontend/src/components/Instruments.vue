@@ -68,7 +68,6 @@ export default {
 
 <template lang="pug">
 .container
-  h1 {{ query }}
   .sort-container
     button(v-on:click="sortByPrice('low')").low-price-button#sort-button Low Price To High Price
     button(v-on:click="sortByPrice('high')").high-price-button#sort-button High Price To Low Price
