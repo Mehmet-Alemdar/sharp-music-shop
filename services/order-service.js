@@ -6,11 +6,10 @@ const shopService = require('./shop-service')
 const Order = require('../models/order')
 
 class OrderService extends BaseService {
-  async createOrder(customerId, destination, quantity, instrumentId, shopId) {
+  async createOrder(customerId, destination, quantity, instrumentId) {
     const customer = await customerService.find(customerId)
     const instrument = await instrumentService.find(instrumentId)
-    //console.log(instrument.shop._id)
-    const shop = await shopService.find(shopId)
+    const shop = instrument.shop._id
 
     if (!instrument) return 'There is no such instrument'
     if (quantity <= 0) return 'invalid'

@@ -37,15 +37,14 @@ router.patch('/:id', async (req, res, next) => {
 // Create order
 router.post('/:customerId', async (req, res, next) => {
   const { customerId } = req.params
-  const { destination, quantity, instrumentId, shopId } = req.body
+  const { destination, quantity, instrumentId} = req.body
 
   try {
     const order = await orderService.createOrder(
       customerId,
       destination,
       quantity,
-      instrumentId,
-      shopId
+      instrumentId
     )
 
     res.send(order)
