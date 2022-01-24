@@ -12,10 +12,10 @@ class OrderService extends BaseService {
     //console.log(instrument.shop._id)
     const shop = await shopService.find(shopId)
 
+    if (!instrument) return 'There is no such instrument'
     if (quantity <= 0) return 'invalid'
 
     const price = instrument.price * quantity
-
     let stock = instrument.stock
     if (stock >= quantity) {
       const order = await this.insert({
@@ -33,8 +33,6 @@ class OrderService extends BaseService {
     }
 
     return 'not enough stock'
-
-
   }
 }
 
