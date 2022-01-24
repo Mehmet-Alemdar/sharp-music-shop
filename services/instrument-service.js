@@ -30,6 +30,22 @@ class InstrumentService extends BaseService {
 
     return instrumentsInStock
   }
+
+  async deleteInstrument(id){
+    try {
+      const instrument = await this.find(id)
+      const shop = instrument.shop
+      const index = shop.instruments.indexOf(id)
+      if(index > -1) {
+        shop.instruments.splice(index, 1)
+      }
+      await this.removeBy('_id', id)
+      await shop.save()
+      return 'ok'
+    }catch(e){
+      return e.message
+    }
+  }
 }
 
 module.exports = new InstrumentService(Instrument)

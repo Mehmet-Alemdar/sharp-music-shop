@@ -91,13 +91,7 @@ router.patch('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   const { id } = req.params
-
-  try {
-    await instrumentService.removeBy('_id', id)
-    res.send('ok')
-  } catch (e) {
-    next(e)
-  }
+  res.send(await instrumentService.deleteInstrument(id))
 })
 
 module.exports = router
