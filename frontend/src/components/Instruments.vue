@@ -3,10 +3,10 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Instruments',
   props: {
-    instruments: []
   },
   data () {
     return {
+      instruments: [],
       types: [],
       categories: [],
       kinds: [],
@@ -32,6 +32,12 @@ export default {
     }
   },
   async mounted () {
+    if (this.$route.name === 'Search') {
+      this.instruments = await this.fetchSearchedInstruments(this.$route.query.query)
+    }
+    if (this.$route.name === 'Instrument') {
+      this.instruments = await this.fetchInstruments(this.$route.query.filter)
+    }
     this.types = await this.fetchTypes()
     this.categories = await this.fetchCategories()
     this.kinds = await this.fetchKinds()
@@ -39,9 +45,9 @@ export default {
     console.log(this.query)
   },
   methods: {
-    ...mapActions(['fetchInstruments', 'fetchCategories', 'fetchBrands', 'fetchTypes', 'fetchKinds', 'fetchInstrumentsByPageNumber', 'storeFilter']),
+    ...mapActions(['fetchInstruments', 'fetchCategories', 'fetchBrands', 'fetchTypes', 'fetchKinds', 'fetchSearchedInstruments', 'storeFilter']),
     check: async function (e) {
-      this.$router.push({ path: 'instrument', query: { filter: this.filter } })
+      this.$router.push({ path: '/instrument', query: { filter: this.filter } })
       this.$router.go()
     },
     sortByPrice: async function (by) {
