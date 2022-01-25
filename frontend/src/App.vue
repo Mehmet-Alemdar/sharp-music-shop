@@ -4,7 +4,7 @@
       router-link(to='/') Home
       router-link(to='/instrument')  | Instruments
       .searchbox-container
-        form.form-container(action='/search' method="GET")
+        form.form-container(action='/instrument/search' method="GET")
           input.search-term(type='text' name="query" placeholder='What are you looking for?')
           button.search-button(type='submit') Search
     router-view

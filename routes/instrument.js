@@ -22,23 +22,9 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/search', async (req, res) => {
-  const type = req.query.type
-  const category = req.query.category
-  const kind = req.query.kind
-  const brand = req.query.brand
-  const model = req.query.model
-
-  const query = {}
-
-  if (type) query.type = type
-  if (category) query.category = category
-  if (kind) query.kind = kind
-  if (brand) query.brand = brand
-  if (model) query.model = models
-
-  const instruments = await instrumentService.query(query)
-
-  res.send(instrumentService.getInstrumentByStockInfo(instruments))
+  const query = req.query.query
+  instruments = await instrumentService.findSearchedInstrument(query)
+  res.send(instruments)
 })
 
 router.get("/categories", async(req,res,next) => {

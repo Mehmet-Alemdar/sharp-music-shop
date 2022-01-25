@@ -18,7 +18,7 @@ const routes = [
     component: Instrument
   },
   {
-    path: '/search',
+    path: '/instrument/search',
     name: 'Search',
     component: Search
   }
