@@ -1,8 +1,8 @@
 <template lang="pug">
   #app
     #nav
-      router-link(to='/') Home
-      router-link(to='/instrument')  | Instruments
+      a(href="/" class="link") Home
+      a(href="/instrument" class="link")  | Instruments
       .searchbox-container
         form.form-container(action='/instrument/search' method="GET")
           input.search-term(type='text' name="query" placeholder='What are you looking for?')
