@@ -67,6 +67,9 @@ export default {
     },
     scrollToTop () {
       window.scrollTo(0, 0)
+    },
+    goToInstrument: function (instrument) {
+      window.location.href = `instrument/${instrument._id}`
     }
   }
 }
@@ -111,7 +114,7 @@ export default {
             input(type="checkbox" :value="`${brand}`" v-model="filter"  @change="check($event)")
             label {{brand}}
   .instruments(v-if="instruments.length")
-    .instrument(v-for="instrument in fetchInstrumentsByPage")
+    .instrument(v-for="instrument in fetchInstrumentsByPage" v-on:click="goToInstrument(instrument)")
       .shop
         a(v-bind:href='"/shop/"+instrument.shop.name') {{instrument.shop.name}}
       hr
