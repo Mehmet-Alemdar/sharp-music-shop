@@ -1,13 +1,13 @@
 <script>
-import Instruments from '@/components/Instruments.vue'
+import Products from '@/components/Products.vue'
 export default {
   name: 'Search',
   components: {
-    Instruments
+    Products
   }
 }
 </script>
 
 <template lang="pug">
-  Instruments
+  Products
 </template>

@@ -1,7 +1,7 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  name: 'Instruments',
+  name: 'Products',
   props: {
   },
   data () {
@@ -42,7 +42,6 @@ export default {
     this.categories = await this.fetchCategories()
     this.kinds = await this.fetchKinds()
     this.brands = await this.fetchBrands()
-    console.log(this.query)
   },
   methods: {
     ...mapActions(['fetchInstruments', 'fetchCategories', 'fetchBrands', 'fetchTypes', 'fetchKinds', 'fetchSearchedInstruments', 'storeFilter']),
