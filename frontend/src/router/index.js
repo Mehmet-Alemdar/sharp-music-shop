@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: '/instrument',
-    name: 'Instrument',
+    name: 'Instruments',
     component: Instruments
   },
   {

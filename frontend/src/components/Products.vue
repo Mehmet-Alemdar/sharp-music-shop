@@ -35,7 +35,7 @@ export default {
     if (this.$route.name === 'Search') {
       this.instruments = await this.fetchSearchedInstruments(this.$route.query.query)
     }
-    if (this.$route.name === 'Instrument') {
+    if (this.$route.name === 'Instruments') {
       this.instruments = await this.fetchInstruments(this.$route.query.filter)
     }
     this.types = await this.fetchTypes()
