@@ -54,10 +54,10 @@ router.get('/kinds', async(req,res)=>{
 
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
-  
   try {
     const instrument = await instrumentService.find(id)
-    res.send(instrumentService.getInstrumentByStockInfo([instrument]))
+    res.send(instrument)
+    // res.send(instrumentService.getInstrumentByStockInfo([instrument]))
   } catch (e) {
     next(e)
   }

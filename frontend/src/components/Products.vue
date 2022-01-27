@@ -68,7 +68,7 @@ export default {
       window.scrollTo(0, 0)
     },
     goToInstrument: function (instrument) {
-      window.location.href = `instrument/${instrument._id}`
+      window.location.href = `/instrument/${instrument._id}`
     }
   }
 }

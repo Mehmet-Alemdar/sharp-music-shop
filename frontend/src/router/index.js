@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Search from '../views/Search.vue'
 import Instruments from '../views/Instruments.vue'
+import Instrument from '../views/Instrument.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/instrument/search',
     name: 'Search',
     component: Search
+  },
+  {
+    path: '/instrument/:id',
+    name: 'Instrument',
+    component: Instrument
   }
 ]
 
